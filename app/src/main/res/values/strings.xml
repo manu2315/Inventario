@@ -6,4 +6,8 @@
     <string name="main_error_permission_denied">Lo siento, no tienes permiso para ver el inventario.</string>
     <string name="main_error_server">Error en el servidor.</string>
     <string name="main_error_remove">Lo siento, usted no tiene permiso de eliminar un producto.</string>
+    <string name="main_dialog_remove_title">Eliminar producto</string>
+    <string name="main_remove_message">Este producto se eliminara de forma permanente.</string>
+    <string name="main_dialog_remove_ok">Eliminar</string>
+    <string name="common_dialog_cancel">Cancelar</string>
 </resources>

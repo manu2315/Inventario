@@ -1,9 +1,13 @@
 package mx.com.manu.inventario.mainModule.view;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -176,7 +180,23 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     }
 
     @Override
-    public void onLongItemClick(Product product) {
+    public void onLongItemClick(final Product product) {
+        Vibrator vibrator =(Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        if(vibrator !=null){
+            vibrator.vibrate(60);
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.main_dialog_remove_title)
+                .setMessage(R.string.main_remove_message)
+                .setPositiveButton(R.string.main_dialog_remove_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.remove(product);
+                    }
+                })
+                .setNegativeButton(R.string.common_dialog_cancel,null)
+                .show();
 
     }
 }
