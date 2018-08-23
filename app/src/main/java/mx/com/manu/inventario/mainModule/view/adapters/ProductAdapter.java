@@ -61,6 +61,33 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return products.size();
     }
 
+    public void add(Product product){
+        if(!products.contains(product)){
+            products.add(product);
+           //evitamos esto  notifyDataSetChanged() para ser mas profesional
+            notifyItemInserted(products.size()-1);
+        }else{
+            update(product);
+        }
+
+    }
+
+    public void update(Product product) {
+        if(products.contains(product)){
+            final int index =products.indexOf(product);
+            products.set(index,product);
+            notifyItemChanged(index);
+        }
+    }
+
+    public void remove(Product product){
+        if(products.contains(product)){
+            final int index =products.indexOf(product);
+            products.remove(index);
+            notifyItemRemoved(index);
+        }
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.imgPhoto)
         AppCompatImageView imgPhoto;
